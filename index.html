@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff2f5">
+  <meta name="description" content="A rosy, savory beet-tinted fried noodle bowl with fresh vegetables and simple food-safety tips.">
+  <title>Pink Fried Noodles — Noodle Bloom</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #442832;
+      --muted: #826b73;
+      --pink: #d94f78;
+      --pink-dark: #b93261;
+      --pink-soft: #ffe0e8;
+      --cream: #fffaf5;
+      --green: #52765d;
+      --shadow: 0 24px 70px rgba(117, 48, 73, .12);
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 7% 11%, rgba(255, 255, 255, .9) 0 2px, transparent 3px) 0 0 / 30px 30px,
+        linear-gradient(145deg, #fff4f6 0%, #ffe8ed 50%, #fff5ee 100%);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; }
+
+    .page-shell {
+      width: min(1160px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      min-height: 88px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      color: var(--ink);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      text-decoration: none;
+      font-size: 1.18rem;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 13px;
+      color: white;
+      background: var(--pink);
+      transform: rotate(-7deg);
+      font-size: 1.35rem;
+      box-shadow: 0 8px 18px rgba(217, 79, 120, .22);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      color: #765c65;
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { color: var(--pink-dark); }
+
+    .nav-cta {
+      padding: 11px 18px;
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: 0 5px 18px rgba(117, 48, 73, .08);
+      color: var(--pink-dark) !important;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1.04fr;
+      gap: 42px;
+      align-items: center;
+      min-height: 610px;
+      padding: 26px 0 64px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border: 1px solid #f3c5d1;
+      border-radius: 999px;
+      color: var(--pink-dark);
+      background: rgba(255, 255, 255, .7);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow span { font-size: 1rem; }
+
+    h1 {
+      max-width: 560px;
+      margin: 22px 0 16px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.5rem, 6vw, 5.65rem);
+      font-weight: 700;
+      line-height: .99;
+      letter-spacing: -.065em;
+    }
+
+    h1 em {
+      color: var(--pink);
+      font-weight: 400;
+    }
+
+    .intro {
+      max-width: 460px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 22px;
+      border: 0;
+      border-radius: 999px;
+      font: inherit;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .button-primary {
+      color: #fff;
+      background: var(--pink);
+      box-shadow: 0 10px 22px rgba(185, 50, 97, .22);
+    }
+
+    .button-primary:hover { background: var(--pink-dark); }
+
+    .button-quiet { color: var(--ink); }
+    .button-quiet:hover { color: var(--pink-dark); }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 35px;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .stars { color: #e99a3d; letter-spacing: 2px; }
+    .rating strong { color: var(--ink); }
+
+    .food-stage {
+      position: relative;
+      display: grid;
+      min-height: 480px;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .food-stage::before {
+      position: absolute;
+      z-index: -1;
+      width: min(100%, 480px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(217, 79, 120, .13);
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffe9ee 0 57%, rgba(255,255,255,.28) 57.5% 70%, transparent 70.5%);
+      content: "";
+    }
+
+    .food-art {
+      width: min(100%, 550px);
+      height: auto;
+      overflow: visible;
+      filter: drop-shadow(0 24px 22px rgba(132, 61, 83, .17));
+      animation: bob 5s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+    }
+
+    .float-note {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 14px;
+      border: 1px solid rgba(255, 255, 255, .86);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .88);
+      box-shadow: 0 12px 28px rgba(117, 48, 73, .1);
+      color: var(--ink);
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .float-note small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .68rem;
+      font-weight: 500;
+    }
+
+    .note-leafy { top: 16%; right: -2%; }
+    .note-fresh { bottom: 16%; left: 0; }
+    .note-icon { font-size: 1.35rem; }
+
+    .details {
+      padding: 28px 0 72px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 23px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      letter-spacing: -.045em;
+    }
+
+    .section-heading p {
+      max-width: 380px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .detail-card {
+      padding: 23px;
+      border: 1px solid rgba(215, 150, 169, .24);
+      border-radius: 21px;
+      background: rgba(255, 255, 255, .7);
+    }
+
+    .detail-card .card-icon { font-size: 1.55rem; }
+
+    .detail-card h3 {
+      margin: 12px 0 7px;
+      font-size: 1rem;
+    }
+
+    .detail-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.65;
+    }
+
+    .recipe {
+      display: grid;
+      grid-template-columns: .78fr 1.22fr;
+      gap: 46px;
+      align-items: start;
+      margin-bottom: 74px;
+      padding: 35px;
+      border-radius: 28px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .recipe-intro {
+      position: sticky;
+      top: 24px;
+      padding: 9px 4px;
+    }
+
+    .recipe-intro h2 {
+      margin: 14px 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.65rem;
+      line-height: 1.08;
+      letter-spacing: -.05em;
+    }
+
+    .recipe-intro p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .time-pill {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      color: var(--pink-dark);
+      background: var(--pink-soft);
+      font-size: .8rem;
+      font-weight: 800;
+    }
+
+    .recipe-content h3 { margin: 8px 0 12px; }
+    .ingredients { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
+    .ingredients li {
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: #fff4f6;
+      color: #68444f;
+      font-size: .8rem;
+    }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+      margin: 22px 0 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: recipe-step;
+    }
+
+    .steps li {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      gap: 11px;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.6;
+      counter-increment: recipe-step;
+    }
+
+    .steps li::before {
+      display: grid;
+      width: 29px;
+      height: 29px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--pink-soft);
+      color: var(--pink-dark);
+      content: counter(recipe-step);
+      font-size: .8rem;
+      font-weight: 800;
+    }
+
+    .safety {
+      margin-top: 22px;
+      padding: 15px 16px;
+      border-left: 3px solid #6b9a70;
+      border-radius: 0 12px 12px 0;
+      background: #f1f8ef;
+      color: #45654b;
+      font-size: .83rem;
+      line-height: 1.6;
+    }
+
+    .safety strong { display: block; margin-bottom: 3px; }
+
+    footer {
+      padding: 23px 0 32px;
+      border-top: 1px solid rgba(181, 104, 127, .18);
+      color: var(--muted);
+      font-size: .8rem;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; gap: 5px; padding-top: 38px; }
+      .hero-copy { text-align: center; }
+      .intro { margin-inline: auto; }
+      .hero-actions, .rating { justify-content: center; }
+      .food-stage { min-height: 410px; }
+      .note-leafy { right: 2%; }
+      .note-fresh { left: 2%; }
+      .section-heading { align-items: start; flex-direction: column; }
+      .recipe { grid-template-columns: 1fr; gap: 16px; }
+      .recipe-intro { position: static; }
+    }
+
+    @media (max-width: 560px) {
+      .page-shell { width: min(100% - 30px, 480px); }
+      .topbar { min-height: 72px; }
+      .nav-links { gap: 15px; font-size: .8rem; }
+      .nav-links a:first-child { display: none; }
+      .nav-cta { padding: 9px 12px; }
+      .hero { min-height: auto; padding: 34px 0 39px; }
+      h1 { font-size: clamp(3.25rem, 15vw, 4.6rem); }
+      .intro { font-size: .98rem; }
+      .food-stage { min-height: 340px; }
+      .float-note { padding: 9px 11px; }
+      .note-leafy { top: 10%; }
+      .note-fresh { bottom: 8%; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .details { padding-bottom: 48px; }
+      .recipe { margin-bottom: 48px; padding: 23px 19px; border-radius: 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Noodle Bloom home">
+        <span class="brand-mark" aria-hidden="true">〰</span>
+        <span>Noodle Bloom</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">The good stuff</a>
+        <a href="#recipe">Recipe</a>
+        <a class="nav-cta" href="#recipe">Let's cook <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span aria-hidden="true">✿</span> A little pink, a lot of yum</div>
+          <h1 id="hero-title">Fried noodles, <em>blushing.</em></h1>
+          <p class="intro">Meet your new comfort-food crush: springy noodles tossed in a naturally rosy beet-and-sesame sauce, with crisp veggies in every bite.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#recipe">Get the recipe <span aria-hidden="true">→</span></a>
+            <a class="button button-quiet" href="#about">What's in the bowl? <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="rating" aria-label="Five out of five stars, a feel-good bowl">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span><strong>100% feel-good</strong> · veggie packed</span>
+          </div>
+        </div>
+
+        <div class="food-stage" role="img" aria-label="Illustration of rosy fried noodles topped with vegetables, sesame, and herbs in a ceramic bowl">
+          <div class="float-note note-leafy">
+            <span class="note-icon" aria-hidden="true">🌿</span>
+            <span>Fresh & colorful<small>Veggies in every forkful</small></span>
+          </div>
+          <div class="float-note note-fresh">
+            <span class="note-icon" aria-hidden="true">🥢</span>
+            <span>Wok-tossed joy<small>Ready in about 25 min</small></span>
+          </div>
+          <svg class="food-art" viewBox="0 0 560 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="bowl" x1="0" y1="0" x2="0" y2="1">
+                <stop stop-color="#fffefa"/>
+                <stop offset="1" stop-color="#f5d9df"/>
+              </linearGradient>
+              <linearGradient id="sauce" x1="0" y1="0" x2="1" y2="1">
+                <stop stop-color="#f28aa7"/>
+                <stop offset=".54" stop-color="#d94f78"/>
+                <stop offset="1" stop-color="#b93261"/>
+              </linearGradient>
+              <clipPath id="noodle-plate">
+                <ellipse cx="280" cy="238" rx="184" ry="108"/>
+              </clipPath>
+            </defs>
+            <ellipse cx="281" cy="411" rx="173" ry="25" fill="#ce8095" opacity=".16"/>
+            <path d="M77 239c12 117 84 190 203 190s191-73 203-190H77Z" fill="url(#bowl)"/>
+            <path d="M93 268c30 84 93 128 187 128s157-44 187-128c-44 28-108 43-187 43s-143-15-187-43Z" fill="#efcbd3" opacity=".7"/>
+            <ellipse cx="280" cy="239" rx="212" ry="130" fill="#fffdf9"/>
+            <ellipse cx="280" cy="236" rx="193" ry="116" fill="#e6a3b3"/>
+            <ellipse cx="280" cy="232" rx="184" ry="108" fill="url(#sauce)"/>
+            <g clip-path="url(#noodle-plate)" fill="none" stroke-linecap="round">
+              <g stroke="#ffd99a" stroke-width="10">
+                <path d="M132 222c37-51 45 54 89 10s50-54 83-9 50 60 90 5 50-27 78 20"/>
+                <path d="M115 255c40-47 48 36 93 8s52-54 86-12 51 55 91 10 53-17 83 15"/>
+                <path d="M136 188c37-34 47 48 90 14s49-48 83-8 49 47 86 9 49-13 72 21"/>
+                <path d="M149 282c31-36 48 32 84 2s47-41 78-6 45 41 79 6 52-11 74 18"/>
+                <path d="M176 162c24 35 43-13 72 18s37 39 67 7 46-26 71 8 43 21 66 0"/>
+              </g>
+              <g stroke="#fff0cc" stroke-width="3.5" opacity=".9">
+                <path d="M130 222c37-51 45 54 89 10s50-54 83-9 50 60 90 5 50-27 78 20"/>
+                <path d="M115 255c40-47 48 36 93 8s52-54 86-12 51 55 91 10 53-17 83 15"/>
+                <path d="M136 188c37-34 47 48 90 14s49-48 83-8 49 47 86 9 49-13 72 21"/>
+              </g>
+            </g>
+            <g>
+              <path d="m180 203 39-13 14 23-39 14Z" fill="#f7a94b"/>
+              <path d="m182 202 10-3 13 22-10 3Z" fill="#ffd080" opacity=".9"/>
+              <path d="m323 265 44-10 12 24-44 11Z" fill="#f7a94b"/>
+              <path d="m327 264 10-2 12 24-10 2Z" fill="#ffd080"/>
+              <path d="m247 165 40-10 10 22-39 10Z" fill="#ffe4be"/>
+              <path d="m249 168 13-4 9 20-12 3Z" fill="#fff4df"/>
+              <circle cx="371" cy="205" r="13" fill="#82aa69"/>
+              <circle cx="371" cy="205" r="5" fill="#d3e3a2"/>
+              <circle cx="214" cy="270" r="12" fill="#7fa769"/>
+              <circle cx="214" cy="270" r="4" fill="#d3e3a2"/>
+              <path d="M286 288c17-22 29-20 37-15-9 18-21 24-37 15Zm2 1c2-14 9-28 24-30 2 15-8 27-24 30Z" fill="#678e60"/>
+              <path d="M156 241c16-21 29-20 37-13-9 17-21 23-37 13Zm2 1c1-14 8-27 23-30 3 15-8 27-23 30Z" fill="#6d9864"/>
+              <path d="M326 188c16-21 29-20 37-13-9 17-21 23-37 13Zm2 1c1-14 8-27 23-30 3 15-8 27-23 30Z" fill="#6d9864"/>
+              <g fill="#fff0cc">
+                <ellipse cx="241" cy="235" rx="3" ry="6" transform="rotate(-32 241 235)"/>
+                <ellipse cx="305" cy="216" rx="3" ry="6" transform="rotate(31 305 216)"/>
+                <ellipse cx="355" cy="244" rx="3" ry="6" transform="rotate(-25 355 244)"/>
+                <ellipse cx="190" cy="226" rx="3" ry="6" transform="rotate(38 190 226)"/>
+                <ellipse cx="279" cy="263" rx="3" ry="6" transform="rotate(-29 279 263)"/>
+              </g>
+            </g>
+            <path d="M68 239c0-73 95-132 212-132s212 59 212 132" fill="none" stroke="#fff" stroke-width="12" opacity=".86"/>
+            <path d="M155 337c38 31 76 44 125 46" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".5"/>
+          </svg>
+        </div>
+      </section>
+
+      <section class="details" id="about" aria-labelledby="details-title">
+        <div class="section-heading">
+          <h2 id="details-title">Pretty can be nourishing.</h2>
+          <p>No mystery colors here—just real ingredients, gently cooked and tossed together for a cozy, savory bowl.</p>
+        </div>
+        <div class="detail-grid">
+          <article class="detail-card">
+            <span class="card-icon" aria-hidden="true">❤️</span>
+            <h3>Rosy, naturally</h3>
+            <p>Beetroot brings the noodles their lovely blush and a mellow, earthy sweetness. No artificial dye needed.</p>
+          </article>
+          <article class="detail-card">
+            <span class="card-icon" aria-hidden="true">🥕</span>
+            <h3>Crunch in every bite</h3>
+            <p>Carrot, greens, and spring onion add bright color and fresh texture to the warm, savory noodles.</p>
+          </article>
+          <article class="detail-card">
+            <span class="card-icon" aria-hidden="true">🍳</span>
+            <h3>Made to enjoy warm</h3>
+            <p>Cook the ingredients through, keep your prep surfaces clean, and serve the noodles hot and freshly tossed.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="recipe" id="recipe" aria-labelledby="recipe-title">
+        <div class="recipe-intro">
+          <div class="eyebrow"><span aria-hidden="true">♡</span> Your new favorite</div>
+          <h2 id="recipe-title">The rosy wok recipe</h2>
+          <p>Sweet beet, savory soy, and a little sesame make a glossy pink sauce that clings to every noodle.</p>
+          <span class="time-pill">⏱ 25 minutes · Serves 2</span>
+        </div>
+        <div class="recipe-content">
+          <h3>Gather your ingredients</h3>
+          <ul class="ingredients">
+            <li>200 g noodles</li>
+            <li>1 small cooked beet</li>
+            <li>1 carrot, thinly sliced</li>
+            <li>1 cup shredded cabbage</li>
+            <li>2 spring onions</li>
+            <li>1 tbsp soy sauce</li>
+            <li>1 tsp sesame oil</li>
+            <li>1 tbsp sesame seeds</li>
+            <li>1 egg (optional)</li>
+          </ul>
+          <h3>Let's make it</h3>
+          <ol class="steps">
+            <li>Wash your hands and produce. Cook noodles according to the packet; drain and set aside. Blend the cooked beet with soy sauce, sesame oil, and a splash of water until smooth.</li>
+            <li>Warm a little oil in a clean wok or pan. Stir-fry carrot and cabbage until tender-crisp, about 3–4 minutes. Add the sauce and heat until bubbling gently.</li>
+            <li>Add noodles and toss until hot throughout and evenly coated. If adding egg, scramble it in the pan and cook until fully set. Finish with spring onion and sesame seeds, then serve right away.</li>
+          </ol>
+          <div class="safety" role="note">
+            <strong>Little kitchen-safety note</strong>
+            Use clean utensils and keep raw ingredients separate from cooked food. Cook egg until fully set, reheat leftovers until steaming hot, and refrigerate them within 2 hours.
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>Made with a pinch of pink and lots of love · Noodle Bloom</footer>
+  </div>
+</body>
+</html>
